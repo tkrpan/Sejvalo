@@ -14,8 +14,7 @@ import android.widget.ImageView;
 public class SplashActivity extends SherlockActivity {
 	
 	ImageView img_splash;
-	Animation scale;
-
+	Animation animFadein;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,28 +22,17 @@ public class SplashActivity extends SherlockActivity {
 		
 		img_splash = (ImageView) findViewById(R.id.img_splash);
 	       
+		animFadein = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fade_in);  
 		
-		final AnimationDrawable anim = new AnimationDrawable();
-		anim.addFrame(getResources().getDrawable(R.drawable.nulta), 100);
-		anim.addFrame(getResources().getDrawable(R.drawable.prva), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.druga), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.treca), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.cetvrta), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.peta), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.sesta), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.sedma), 150);
-		anim.addFrame(getResources().getDrawable(R.drawable.osma), 350);
-		anim.addFrame(getResources().getDrawable(R.drawable.sedma), 150);
+		img_splash.startAnimation(animFadein);
 		
-		
-		img_splash.setImageDrawable(anim);
-		
-		img_splash.post(new Runnable(){
+		/*img_splash.post(new Runnable(){
 	        public void run(){
-	        	anim.start();
-	        	anim.setOneShot(true);
+	        	img_splash.startAnimation(animFadein);
+	        	
 	        }
-	    });
+	    });*/
 	
 		
 		Thread splash = new Thread(){

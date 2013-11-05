@@ -7,7 +7,6 @@ import com.actionbarsherlock.view.MenuItem;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.app.Activity;
 import android.content.Intent;
 
 public class MojePretrage extends SherlockActivity {

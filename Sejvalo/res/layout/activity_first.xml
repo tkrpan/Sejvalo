@@ -35,7 +35,14 @@
             android:text="@string/buttonSearch" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/AdapterResLayout" >
+
+        <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -80,7 +87,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/AdapterResLayout"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
@@ -131,12 +137,10 @@
         android:layout_below="@id/TextLayout"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:listSelector="@drawable/list_selector"
         android:paddingTop="5dp" >
 
     </ListView>
-   
 
     <ImageView
         android:id="@+id/imageView1"
@@ -231,59 +235,6 @@
         </RelativeLayout>
         
     </RelativeLayout>
-        
-    <RelativeLayout
-        android:id="@+id/infoLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:paddingTop="5dp" >
-
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/relativeLayoutInfo"
-            android:background="@drawable/bottom_gradient"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp" >
-
-            <Button
-            android:id="@+id/buttonOK"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/moja_tipka_bottom"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:text="@string/buttonOK"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
- 
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayoutInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/background_gradient"
-            android:paddingBottom="15dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp" >
-
-            <TextView
-                android:id="@+id/infoText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Aplikacija Sejvalo je cooool aplikacija ;)"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-     
-        </RelativeLayout>
-        
     
     </RelativeLayout>
     

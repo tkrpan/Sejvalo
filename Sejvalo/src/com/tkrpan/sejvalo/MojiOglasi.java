@@ -17,16 +17,18 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class MojiOglasi extends SherlockActivity implements OnClickListener,
+public class MojiOglasi extends SherlockActivity implements 
 		OnItemClickListener {
 
 	private ListView listView;
-	private Button buttonDelete;
 
 	private String query;
 	private String nest;
@@ -44,12 +46,15 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 	private Ad adOnLongClick;
 
 	DatabaseHandler db;
-
+	
+	MenuItem delete; // ***
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_moji_oglasi);
-
+		
+		// ***
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -58,20 +63,33 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 		actionbar.setDisplayHomeAsUpEnabled(true);
 		actionbar.setHomeButtonEnabled(true);
 		actionbar.setTitle("   Moji oglasi");
-
+		// ***
+		
+		
 		listView = (ListView) findViewById(R.id.listView1);
-		buttonDelete = (Button) findViewById(R.id.buttonDelete);
-
-		buttonDelete.setOnClickListener(this);
 		listView.setOnItemClickListener(this);
-
+		
 		loadBookmarks();
-		if (list.isEmpty()) listView.setVisibility(View.GONE);
+		
+		if (list.isEmpty()) listView.setVisibility(View.GONE); // ***
 	}
 
+	// ***
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.moji_oglasi, menu);
+		getSupportMenuInflater().inflate(R.menu.moji_oglasi, menu);	
+		
+		// Ovdje ide pojavljivanje i sakrivanje kante za brisanje iz ActionBara
+		
+		/*delete = menu.findItem(R.id.obrisi);
+		if (isCheckedFlag == true) 
+	    {
+			delete.setVisible(true);
+	    }
+		else
+		{
+			delete.setVisible(false);
+		}*/
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -105,7 +123,7 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
+	}// ***
 
 	public void loadBookmarks() {
 
@@ -127,10 +145,12 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 		}
 		AdapterBookmark adapterBookmark = new AdapterBookmark(this, list);
 		listView.setAdapter(adapterBookmark);
+		
+	
 	}
 
 	public void getChekededItems() {
-
+		
 		chekededItems = new ArrayList();
 
 		for (int i = 0; i < list.size(); i++) {
@@ -143,6 +163,8 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 			}
 		}
 	}
+	
+
 
 	/*
 	 * public void setEnableDelete(Boolean check){
@@ -166,28 +188,9 @@ public class MojiOglasi extends SherlockActivity implements OnClickListener,
 		getChekededItems();
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		UIstrings uiString = new UIstrings();
-		switch (v.getId()) {
-		case R.id.buttonDelete:
 
-			getChekededItems();
-			if (isCheckedFlag == true) {
-				db.deleteMultipleAd(chekededItems);
-				loadBookmarks();
-				isCheckedFlag = false;
-			} else {
-				Toast.makeText(this, uiString.getToastDelete(),
-						Toast.LENGTH_SHORT).show();
-			}
-			if (list.isEmpty()) listView.setVisibility(View.GONE);
-			break;
+	
 
-		default:
-			break;
-		}
-	}
-
+	
 }
+

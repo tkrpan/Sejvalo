@@ -52,7 +52,8 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 	private ListView listView2;
 	private Spinner spinner;
 
-	LinearLayout bottomLayout;
+	LinearLayout bottomLayout; // ***
+	RelativeLayout mainLayout; // ***
 
 	String query, number;
 
@@ -87,17 +88,13 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 	Ad adOnLongClick;
 
 	UIstrings uiStrings = new UIstrings();
-
-	// InfoLayout
-
-	RelativeLayout infoLayout;
-	Button buttonOK;
-
+  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first);
 
+		// ***     
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -105,7 +102,8 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 
 		actionbar.setHomeButtonEnabled(false);
 		actionbar.setTitle("");
-
+		// ***
+		
 		buttonSearch2 = (Button) findViewById(R.id.buttonSearch2);
 		editText2 = (EditText) findViewById(R.id.editText2);
 		textQuery = (TextView) findViewById(R.id.textQuery);
@@ -120,9 +118,8 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 		buttonRefine.setOnClickListener(this);
 		spinner.setOnItemSelectedListener(this);
 
-		editText2.setOnTouchListener(this);
-
-		//query = getIntent().getExtras().getString("query");
+		editText2.setOnTouchListener(this); // ***
+		
 		list = new ArrayList<Ad>();
 
 		listView2.setOnItemClickListener(this);
@@ -138,14 +135,13 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 
 		layoutIvisible = (RelativeLayout) findViewById(R.id.relativeLayoutInvisible);
 		bottomLayout = (LinearLayout) findViewById(R.id.linearLayout2);
-
-		// Info Layout
-		infoLayout = (RelativeLayout) findViewById(R.id.infoLayout);
-		buttonOK = (Button) findViewById(R.id.buttonOK);
-		buttonOK.setOnClickListener(this);
+		mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);// ***
+		
 		setEnableElements();
+		
 	}
-
+	
+	// ***
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.first, menu);
@@ -164,16 +160,16 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 			startActivity(pretrage);
 			break;
 		case R.id.info:
-			infoLayout.setVisibility(View.VISIBLE);
-			setDisableElements();
-			layoutIvisible.setVisibility(View.GONE);
+			Intent info = new Intent(this, InfoActivity.class);
+			startActivity(info);
 			break;
+			
 		default:
 			break;
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
+	}// ***
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -230,6 +226,7 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 
 		switch (v.getId()) {
 		case R.id.buttonSearch2:
+			//mainLayout.setVisibility(View.VISIBLE); // ***
 
 			if ((new NetworkState().checkConnection(this)) == true) {
 
@@ -280,13 +277,15 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 						});
 				alert2.show();
 			}
-
+			// ***
 			editText2.setText("");
 			InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 			inputManager.hideSoftInputFromWindow(getCurrentFocus()
 					.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			bottomLayout.setVisibility(View.VISIBLE);
+			// ***
+			
 			break;
 
 		case R.id.buttonRefine: 
@@ -301,10 +300,6 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 
 		case R.id.buttonCancel:
 
-			setEnableElements();
-			break;
-
-		case R.id.buttonOK:
 			setEnableElements();
 			break;
 
@@ -381,8 +376,6 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 		buttonBookmark.setEnabled(false);
 		textDescription.setEnabled(false);
 		textLink.setEnabled(false);
-
-		infoLayout.setVisibility(View.GONE);
 	}
 
 	public void bookmarkAd() {
@@ -494,10 +487,11 @@ public class FirstActivity extends SherlockActivity implements OnClickListener,
 		}
 	}
 
+	// ***
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		bottomLayout.setVisibility(View.GONE);
 		return false;
-	}
+	}// ***
 
 }

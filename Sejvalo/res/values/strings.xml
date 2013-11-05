@@ -4,24 +4,22 @@
     <string name="app_name">Sejvalo</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_first">FirstActivity</string>
-    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_first">Sejvalo</string>
     <string name="actionbar_oglasi">Moji oglasi</string>
     <string name="actionbar_pretrage">Moje pretrage</string>
     <string name="actionbar_info">Info</string>
     <string name="actionbar_ukloni">Ukloni</string>
     <string name="hintText">Nova pretraga&#8230;</string>
-    <string name="buttonSearch">Traži</string> 
+    <string name="buttonSearch">Traži</string>
     <string name="buttonSeavedSearches">Moje pretrage</string>
     <string name="buttonBookmarks">Moji oglasi</string>
     <string name="buttonBookmark">Spremi oglas</string>
-    <string name="title_activity_second">Sejvalo</string>
     <string name="buttonSave">Spremi pretragu</string>
     <string name="buttonRefine">Promijeni pretragu</string>
     <string name="buttonCancel">Odustani</string>
     <string name="buttonDelete">Ukloni</string>
     <string name="buttonOK">OK</string>
-   
+
     <string-array name="spinnerItems">
         <item>Najnoviji</item>
         <item>Najstariji</item>
@@ -32,5 +30,9 @@
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_moje_pretrage">Moje pretrage</string>
     <string name="title_activity_moji_oglasi">Moji oglasi</string>
+    <string name="title_activity_info">InfoActivity</string>
+    <string name="titleInfo">O aplkaciji</string>
+    <string name="infoText">Aplikacija Sejvalo je cooool aplikacija ;)</string>
+    
 
 </resources>
